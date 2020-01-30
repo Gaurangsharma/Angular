@@ -1,3 +1,3 @@
 git add .
-git commit -m "component part 2"
+git commit -m "Assignment 1"
 git push origin master
