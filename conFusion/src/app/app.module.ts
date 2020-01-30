@@ -4,7 +4,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatListModule } from "@angular/material/list";
-
+import { MatGridListModule } from "@angular/material/grid-list";
+import { MatCardModule, MatCard } from "@angular/material/card";
+import { MatButtonModule, MatButton } from "@angular/material/button";
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
@@ -21,7 +23,10 @@ import { MenuComponent } from './menu/menu.component';
     BrowserAnimationsModule,
     MatToolbarModule,
     FlexLayoutModule,
-    MatListModule
+    MatListModule,
+    MatCardModule,
+    MatGridListModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
