@@ -11,7 +11,7 @@
 
   <div fxFlex>
     <mat-grid-list cols="2" rowHeight="200px">
-      <mat-grid-tile *ngFor="let dish of dishes">
+      <mat-grid-tile *ngFor="let dish of dishes" (click)="onSelect(dish)">
         <img height="200px" src="{{dish.image}}" alt="{{dish.name}}">
         <mat-grid-tile-footer>
           <h1>
@@ -21,52 +21,5 @@
       </mat-grid-tile>
     </mat-grid-list>
   </div>
-
 </div>
-<div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
-  fxLayoutAlign.gt-md="space-around center" fxLayoutGap="10px" fxLayoutGap.xs="0">
-
-  <div fxFlex="40" *ngIf="dishDetails">
-    <mat-card *ngFor="let d of dishDetails">
-      <mat-card-header>
-        <mat-card-title>
-          <h3>{{d.name | uppercase}}</h3>
-        </mat-card-title>
-      </mat-card-header>
-      <img mat-card-image height="50%" width="50%" src={{d.image}} alt={{d.name}}>
-      <mat-card-content>
-        <p>{{d.description}}
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-      </mat-card-actions>
-    </mat-card>
-
-  </div>
-
-  <div fxFlex="40" *ngIf="dishDetails">
-    <div>
-      <h3> Comments</h3>
-    </div>
-    <!-- <mat-list *ngFor="let detail of dishDetails">
-    <mat-list-item >
-      <p>{{detail.comments.comment}}</p>
-    <mat-list-item>
-      <span>{{detail.comments.rating}} stars</span>
-    </mat-list-item>
-      <mat-list-item>
-        <p>-- </p>
-      </mat-list-item>
-    </mat-list-item>
-  </mat-list> -->
-    <mat-list *ngFor="let detail of dishDetails">
-      <div *ngFor="let c of detail.comments">
-        <p>{{c.comment}}</p>
-        <p>{{c.rating}} Stars</p>
-        <p>-- {{c.author}} {{c.date | date}}</p>
-      </div>
-    </mat-list>
-  </div>
-</div>
+<app-dish-details [dish]="selectedDish"></app-dish-details>

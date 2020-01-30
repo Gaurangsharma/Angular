@@ -1,3 +1,3 @@
 git add .
-git commit -m "Assignment 1"
+git commit -m "Data binding"
 git push origin master
