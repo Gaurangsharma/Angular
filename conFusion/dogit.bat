@@ -1,3 +1,3 @@
 git add .
-git commit -m "Data Binding final"
+git commit -m "Single Page Applications Part 1"
 git push origin master
