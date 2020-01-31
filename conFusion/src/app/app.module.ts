@@ -9,28 +9,43 @@ import { MatCardModule, MatCard } from "@angular/material/card";
 import { MatButtonModule, MatButton } from "@angular/material/button";
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from "./app-routing/app-routing.module";
 
 import 'hammerjs';
 import { MenuComponent } from './menu/menu.component';
 import { DishDetailsComponent } from './dish-details/dish-details.component';
+import { DishService } from './services/dish.service';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { AboutComponent } from './about/about.component';
+import { HomeComponent } from './home/home.component';
+import { ContactsComponent } from './contacts/contacts.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    DishDetailsComponent
+    DishDetailsComponent,
+    HeaderComponent,
+    FooterComponent,
+    AboutComponent,
+    HomeComponent,
+    ContactsComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     FlexLayoutModule,
+    AppRoutingModule,
     MatListModule,
     MatCardModule,
     MatGridListModule,
     MatButtonModule
   ],
-  providers: [],
+  providers: [
+    DishService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

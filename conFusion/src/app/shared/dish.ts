@@ -1,4 +1,5 @@
-import { Comment } from "../shared/comments";
+import { Comment } from "../shared/comment";
+
 export class Dish{
     id:string;
     name:string;
