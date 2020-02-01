@@ -1,3 +1,3 @@
 git add .
-git commit -m "Assignment 2"
+git commit -m "Dialog"
 git push origin master
