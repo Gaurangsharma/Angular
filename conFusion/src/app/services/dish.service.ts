@@ -15,6 +15,7 @@ export class DishService {
   }
 
   getDish(id: string):Dish {
+    console.log("Dish Filtered");
     return DISHES.filter((dish)=>(dish.id===id))[0];
   }
 

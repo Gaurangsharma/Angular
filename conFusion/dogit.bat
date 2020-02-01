@@ -1,3 +1,3 @@
 git add .
-git commit -m "Single Page Applications Part 1"
+git commit -m "Assignment 2"
 git push origin master
