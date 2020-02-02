@@ -11,16 +11,16 @@ export class LeadersService {
   constructor() { }
 
 
-  getLeaders():Leader[]{
-    return LEADERS;
+  getLeaders():Promise<Leader[]>{
+    return Promise.resolve(LEADERS);
   }
 
-  getLeader(id: string):Leader {
+  getLeader(id: string):Promise<Leader> {
     console.log("Dish Filtered");
-    return LEADERS.filter((Leader)=>(Leader.id===id))[0];
+    return Promise.resolve(LEADERS.filter((Leader)=>(Leader.id===id))[0]);
   }
 
-  getFeaturedLeader():Leader {
-    return LEADERS.filter((Leader)=>Leader.featured)[0];
+  getFeaturedLeader():Promise<Leader> {
+    return Promise.resolve(LEADERS.filter((Leader)=>Leader.featured)[0]);
   }
 }
