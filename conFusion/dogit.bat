@@ -1,3 +1,3 @@
 git add .
-git commit -m "Promise Part 2"
+git commit -m "RxJs Part 1"
 git push origin master
