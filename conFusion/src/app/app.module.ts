@@ -7,6 +7,7 @@ import { MatListModule } from "@angular/material/list";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatCardModule, MatCard } from "@angular/material/card";
 import { MatButtonModule, MatButton } from "@angular/material/button";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormField, MatFormFieldModule } from "@angular/material/form-field";
 import { MatInput, MatInputModule } from "@angular/material/input";
@@ -67,6 +68,7 @@ import { LoginComponent } from './login/login.component';
     MatCheckboxModule,
     MatSelectModule,
     MatSlideToggleModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     DishService,

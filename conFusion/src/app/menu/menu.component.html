@@ -1,12 +1,16 @@
 <div class="container" fxLayout="column" fxLayoutGadiv="10px">
 
 
-  <div fxFlex>
+  <div fxFlex *ngIf="dishes">
     <div>
       <h3>Menu</h3>
       <hr>
     </div>
 
+  </div>
+
+  <div [hidden]="dishes">
+      <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
   </div>
 
   <div fxFlex>
