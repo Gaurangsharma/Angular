@@ -1,3 +1,3 @@
 git add .
-git commit -m "RxJs Part 3"
+git commit -m "assignment 2"
 git push origin master

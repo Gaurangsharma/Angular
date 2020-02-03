@@ -3,7 +3,7 @@
 
   <div fxFlex="40" *ngIf="dish">
     <!-- <mat-card *ngFor="let d of dish"> -->
-      <mat-card>
+    <mat-card>
       <mat-card-header>
         <mat-card-title>
           <h3>{{dish.name | uppercase}}</h3>
@@ -21,7 +21,8 @@
         <button mat-button>LIKE</button>
         <button mat-button>SHARE</button>
         <span class="flex-spacer"></span>
-        <button mat-button [routerLink]="['/dishdetails', next]"><span class="fa fa-chevron-right fa-lg"></span></button>
+        <button mat-button [routerLink]="['/dishdetails', next]"><span
+            class="fa fa-chevron-right fa-lg"></span></button>
       </mat-card-actions>
     </mat-card>
 
@@ -42,12 +43,29 @@
       </mat-list-item>
     </mat-list-item>
   </mat-list> -->
-    <mat-list >
-        <div *ngFor="let c of dish.comments">
-          <p>{{c.comment}}</p>
-          <p>{{c.rating}} Stars</p>
-          <p>-- {{c.author}} {{c.date | date}}</p> 
+    <mat-list>
+      <div *ngFor="let c of dish.comments">
+        <p>{{c.comment}}</p>
+        <p>{{c.rating}} Stars</p>
+        <p>-- {{c.author}} {{c.date | date}}</p>
       </div>
     </mat-list>
+    <mat-list>
+      <p>{{commentForm.value.comment}}</p>
+      <p>{{commentForm.value.rating}} Stars</p>
+      <p>-- {{commentForm.value.author}} {{commentForm.value.date | date}}</p>
+    </mat-list>
+    <form novalidate [formGroup]="commentForm" class="example-form" (ngSubmit)="onSubmit()">
+      <mat-form-field class="example-full-width">
+        <input matInput 
+         formControlName="author" placeholder="Name" type="text" required>
+      </mat-form-field>
+      <mat-slider formControlName="rating" min="1" max="5" step="1" value="5" thumbLabel tickInterval="1"></mat-slider>
+      <mat-form-field class="example-full-width">
+        <textarea matInput formControlName="comment" placeholder="Your comment" required></textarea>
+      </mat-form-field>
+      <button type="submit" mat-button class="background-primary text-floral-white"
+        >Submit</button>
+    </form>
   </div>
 </div>

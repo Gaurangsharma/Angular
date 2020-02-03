@@ -59,7 +59,7 @@ export class ContactsComponent implements OnInit {
       email: ['',Validators.required,Validators.email],
       agree: false,
       contacttype: 'None',
-      message: ''
+      message: '',
     });
 
     this.feedbackForm.valueChanges.subscribe(data=>this.onValueChanged(data));
@@ -68,6 +68,7 @@ export class ContactsComponent implements OnInit {
   onSubmit() {
     this.feedback = this.feedbackForm.value;
     console.log(this.feedback);
+
     this.feedbackForm.reset({
       firstname: '' ,
       lastname: '',
@@ -75,7 +76,8 @@ export class ContactsComponent implements OnInit {
       email:  '',
       agree: false,
       contacttype: 'None',
-      message: ''
+      message: '',
+
     });
     this.feedbackFormDirective.resetForm();
   }
