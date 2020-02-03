@@ -39,15 +39,14 @@ export class DishDetailsComponent implements OnInit {
       .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
   }
   formErrors = {
-    'name': '',
-    'rating': '',
+    'author': '',
     'comment': '',
   };
 
   validationMessages = {
     author: {
-      'required': 'First Name is required',
-      'minlength': 'First Name is atleast 2 char Long',
+      'required': 'Author Name is required',
+      'minlength': 'Author Name is atleast 2 char Long',
     },
     comment: {
       'required': 'Email is required',
@@ -82,7 +81,8 @@ export class DishDetailsComponent implements OnInit {
     console.log(isoDate);
     this.comment.date = isoDate;
     console.log(this.comment);
-
+    console.log(this.dish)
+    this.dish.comments.push(this.comment);
     this.commentForm.reset({
       author: '',
       rating: 5,
