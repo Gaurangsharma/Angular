@@ -3,10 +3,11 @@ import { Dish } from "../shared/dish";
 import { DishService } from "../services/dish.service";
 import { ActivatedRoute, Params } from "@angular/router";
 import { Location } from "@angular/common";
-import { FormBuilder, FormGroup, Validator, Validators } from "@angular/forms";
-import { Comment } from "../shared/comment";
 
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Comment } from "../shared/comment";
 import { switchMap } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-dish-details',

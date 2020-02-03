@@ -18,6 +18,8 @@ import { MatSliderModule } from "@angular/material/slider";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+
 
 
 
@@ -34,11 +36,13 @@ import { FooterComponent } from './footer/footer.component';
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { ContactsComponent } from './contacts/contacts.component';
+import { LoginComponent } from './login/login.component';
 
 import { DishService } from './services/dish.service';
 import { PromotionService } from "./services/promotion.service";
 import { LeadersService } from "./services/leaders.service";
-import { LoginComponent } from './login/login.component';
+import { baseURL } from './shared/baseurl';
+
 
 @NgModule({
   declarations: [
@@ -56,6 +60,7 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     BrowserAnimationsModule,    
     FlexLayoutModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
@@ -76,7 +81,8 @@ import { LoginComponent } from './login/login.component';
   providers: [
     DishService,
     PromotionService,
-    LeadersService
+    LeadersService,
+    {provide:'baseURL',useValue:baseURL}
   ],
   entryComponents:[
     LoginComponent,
