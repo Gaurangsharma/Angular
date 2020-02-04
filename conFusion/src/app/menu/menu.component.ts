@@ -11,15 +11,15 @@ import { baseURL } from '../shared/baseurl';
 export class MenuComponent implements OnInit {
 
   dishes: Dish[];
-
   basePath: string;
+  errMess:string;
 
   constructor(private dishService: DishService) { }
 
   ngOnInit() {
     this.basePath = baseURL;
     this.dishService.getDishes()
-      .subscribe(dishes => this.dishes = dishes);
+      .subscribe(dishes => this.dishes = dishes,errmess=>this.errMess=<any>errmess);
   }
 
 }

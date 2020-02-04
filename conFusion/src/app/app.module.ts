@@ -42,6 +42,7 @@ import { DishService } from './services/dish.service';
 import { PromotionService } from "./services/promotion.service";
 import { LeadersService } from "./services/leaders.service";
 import { baseURL } from './shared/baseurl';
+import { CommentPreviewComponent } from './comment-preview/comment-preview.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { baseURL } from './shared/baseurl';
     AboutComponent,
     HomeComponent,
     ContactsComponent,
-    LoginComponent
+    LoginComponent,
+    CommentPreviewComponent
   ],
   imports: [
     BrowserModule,

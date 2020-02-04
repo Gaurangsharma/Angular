@@ -10,7 +10,7 @@
           <hr>
         </mat-card-title>
       </mat-card-header>
-      <img mat-card-image height="50%" width="50%" src="{{basePath+dish.image}}" alt="{{basePath+dish.name}}">
+      <img mat-card-image height="50%" width="50%" src="{{basePath+dish.image}}" alt="{{dish.name}}">
       <mat-card-content>
         <p>{{dish.description}}
         </p>
@@ -66,8 +66,11 @@
         <textarea matInput formControlName="comment" placeholder="Your comment" required></textarea>
         <mat-error *ngIf="formErrors.comment">{{ formErrors.comment}}</mat-error>
       </mat-form-field>
+      <button mat-button (click)="opencommentForm()"><span class="fa fa-sign-in fa-lg"></span> Preview</button>
       <button type="submit" mat-button class="background-primary text-floral-white"
         >Submit</button>
     </form>
   </div>
 </div>
+
+<app-comment-preview [commentPreview]='commentForm'></app-comment-preview>

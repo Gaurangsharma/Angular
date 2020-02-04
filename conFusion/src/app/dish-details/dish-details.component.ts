@@ -8,6 +8,8 @@ import { Comment } from "../shared/comment";
 import { switchMap } from 'rxjs/operators';
 import { baseURL } from "../shared/baseurl";
 import { HttpClient } from "@angular/common/http";
+import { CommentPreviewComponent} from "../comment-preview/comment-preview.component";
+import { MatDialog } from "@angular/material/dialog";
 
 
 @Component({
@@ -31,7 +33,8 @@ export class DishDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private fb: FormBuilder,
-    private http:HttpClient) {
+    private http:HttpClient,
+    public dialog:MatDialog) {
     this.createForm();
   }
 
@@ -112,6 +115,10 @@ export class DishDetailsComponent implements OnInit {
         }
       }
     }
+  }
+
+  opencommentForm(){
+    this.dialog.open(CommentPreviewComponent,{width:'500px',height:'450px'});
   }
 
 }
