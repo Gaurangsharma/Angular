@@ -82,7 +82,7 @@ import { baseURL } from './shared/baseurl';
     DishService,
     PromotionService,
     LeadersService,
-    {provide:'baseURL',useValue:baseURL}
+    {provide:'BaseURL',useValue:baseURL}
   ],
   entryComponents:[
     LoginComponent,

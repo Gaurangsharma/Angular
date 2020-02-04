@@ -3,10 +3,11 @@ import { Dish } from "../shared/dish";
 import { DishService } from "../services/dish.service";
 import { ActivatedRoute, Params } from "@angular/router";
 import { Location } from "@angular/common";
-
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Comment } from "../shared/comment";
 import { switchMap } from 'rxjs/operators';
+import { baseURL } from "../shared/baseurl";
+import { HttpClient } from "@angular/common/http";
 
 
 @Component({
@@ -22,23 +23,36 @@ export class DishDetailsComponent implements OnInit {
   dish: Dish;
   comment: Comment;
   commentForm: FormGroup;
-
-  extra: string;
+  basePath: string;
 
   @ViewChild('fform') commentFormDirective;
 
   constructor(private dishservice: DishService,
     private route: ActivatedRoute,
     private location: Location,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    private http:HttpClient) {
     this.createForm();
   }
 
   ngOnInit() {
+    this.basePath=baseURL;
     this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
     this.route.params.pipe(switchMap((params: Params) => this.dishservice.getDish(params['id'])))
       .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
   }
+
+  setPrevNext(dishId: string) {
+    const index = this.dishIds.indexOf(dishId);
+    this.prev = this.dishIds[(this.dishIds.length + index - 1) % this.dishIds.length];
+    this.next = this.dishIds[(this.dishIds.length + index + 1) % this.dishIds.length];
+  }
+
+
+  goBack(): void {
+    this.location.back();
+  }
+
   formErrors = {
     'author': '',
     'comment': '',
@@ -52,17 +66,6 @@ export class DishDetailsComponent implements OnInit {
     comment: {
       'required': 'Email is required',
     },
-  }
-
-  setPrevNext(dishId: string) {
-    const index = this.dishIds.indexOf(dishId);
-    this.prev = this.dishIds[(this.dishIds.length + index - 1) % this.dishIds.length];
-    this.next = this.dishIds[(this.dishIds.length + index + 1) % this.dishIds.length];
-  }
-
-
-  goBack(): void {
-    this.location.back();
   }
 
   createForm() {
@@ -79,10 +82,9 @@ export class DishDetailsComponent implements OnInit {
     this.comment = this.commentForm.value;
     let datee = new Date();
     let isoDate = datee.toISOString();
-    console.log(isoDate);
     this.comment.date = isoDate;
     console.log(this.comment);
-    console.log(this.dish)
+    console.log(this.dish);
     this.dish.comments.push(this.comment);
     this.commentForm.reset({
       author: '',

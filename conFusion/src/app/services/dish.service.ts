@@ -20,12 +20,13 @@ export class DishService {
   }
 
   getDish(id: number): Observable<Dish> {
+    console.log(id);
     return this.http.get<Dish>(baseURL + 'dishes/' + id);
   }
 
   getFeaturedDish(): Observable<Dish> {
     return this.http.get<Dish[]>(baseURL + 'dishes?featured=true').pipe(map(dishes => dishes[0]));
-  }
+  } 
 
   getDishIds(): Observable<number[] | any> {
     return this.getDishes().pipe(map(dishes => dishes.map(dish => dish.id)));
