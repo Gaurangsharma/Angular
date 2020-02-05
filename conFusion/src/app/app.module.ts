@@ -40,6 +40,7 @@ import { PromotionService } from "./services/promotion.service";
 import { LeadersService } from "./services/leaders.service";
 import { baseURL } from './shared/baseurl';
 import { ProcessHttpMsgService } from "./services/process-http-msg.service";
+import { HighLightDirective } from './directives/high-light.directive';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { ProcessHttpMsgService } from "./services/process-http-msg.service";
     HomeComponent,
     ContactsComponent,
     LoginComponent,
-    CommentPreviewComponent
+    CommentPreviewComponent,
+    HighLightDirective
   ],
   imports: [
     BrowserModule,
