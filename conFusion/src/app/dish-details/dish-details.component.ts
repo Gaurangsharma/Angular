@@ -8,14 +8,27 @@ import { Comment } from "../shared/comment";
 import { switchMap } from 'rxjs/operators';
 import { baseURL } from "../shared/baseurl";
 import { HttpClient } from "@angular/common/http";
-import { CommentPreviewComponent} from "../comment-preview/comment-preview.component";
+import { CommentPreviewComponent } from "../comment-preview/comment-preview.component";
 import { MatDialog } from "@angular/material/dialog";
-
+import { trigger, transition, state, style, animate } from "@angular/animations";
 
 @Component({
   selector: 'app-dish-details',
   templateUrl: './dish-details.component.html',
-  styleUrls: ['./dish-details.component.scss']
+  styleUrls: ['./dish-details.component.scss'],
+  animations: [
+    trigger('visibility', [
+      state('showing', style({
+        transform: 'scale(1.0)',
+        opacity: 1
+      })),
+      state('hidding', style({
+        transform: 'scale(0.5)',
+        opacity: 0
+      })),
+      transition('* => *', animate('1s ease-in-out'))
+    ])
+  ]
 })
 export class DishDetailsComponent implements OnInit {
 
@@ -26,8 +39,9 @@ export class DishDetailsComponent implements OnInit {
   comment: Comment;
   commentForm: FormGroup;
   basePath: string;
-  dishcopy:Dish;
-  dishdetailerrMsg:string;
+  dishcopy: Dish;
+  dishdetailerrMsg: string;
+  visibility = 'showing';
 
   @ViewChild('fform') commentFormDirective;
 
@@ -35,18 +49,18 @@ export class DishDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private fb: FormBuilder,
-    private http:HttpClient,
-    private dialog:MatDialog) {
+    private http: HttpClient,
+    private dialog: MatDialog) {
     this.createForm();
   }
 
   ngOnInit() {
-    this.basePath=baseURL;
+    this.basePath = baseURL;
     this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
     this.route.params
-      .pipe(switchMap((params: Params) => this.dishservice.getDish(params['id'])))
-      .subscribe(dish => { this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id); },
-      dishdetailerrMsg => this.dishdetailerrMsg = <any>dishdetailerrMsg );
+      .pipe(switchMap((params: Params) => { this.visibility = 'hidding'; return this.dishservice.getDish(params['id']); }))
+      .subscribe(dish => { this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id); this.visibility = 'showing'; },
+        dishdetailerrMsg => this.dishdetailerrMsg = <any>dishdetailerrMsg);
   }
 
   setPrevNext(dishId: string) {
@@ -92,9 +106,10 @@ export class DishDetailsComponent implements OnInit {
     this.comment.date = isoDate;
     this.dish.comments.push(this.comment);
     this.dishservice.putDish(this.dishcopy)
-    .subscribe(dish=>{
-      this.dish=dish;this.dishcopy=dish;this.setPrevNext(dish.id); },
-      dishdetailerrMsg => this.dishdetailerrMsg = <any>dishdetailerrMsg );
+      .subscribe(dish => {
+        this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id);
+      },
+        dishdetailerrMsg => this.dishdetailerrMsg = <any>dishdetailerrMsg);
     this.commentForm.reset({
       author: '',
       rating: 5,
@@ -122,8 +137,8 @@ export class DishDetailsComponent implements OnInit {
       }
     }
   }
-  opencommentForm(){
-    this.dialog.open(CommentPreviewComponent,{width:'500px',height:'450px'});
+  opencommentForm() {
+    this.dialog.open(CommentPreviewComponent, { width: '500px', height: '450px' });
   }
 
 }
