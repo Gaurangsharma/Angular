@@ -27,6 +27,9 @@
     </mat-card>
 
   </div>
+  
+
+  
 
   <div fxFlex="40" *ngIf="dish">
     <div>
@@ -70,6 +73,13 @@
       <button type="submit" mat-button class="background-primary text-floral-white"
         >Submit</button>
     </form>
+  </div>
+  <div [hidden]="dish || dishdetailerrMsg">
+    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+</div>
+  <div fxFlex *ngIf="dishdetailerrMsg">
+    <h2>Error</h2>
+    <h4>{{dishdetailerrMsg}}</h4>
   </div>
   
 </div>

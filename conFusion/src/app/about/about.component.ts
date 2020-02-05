@@ -12,6 +12,7 @@ export class AboutComponent implements OnInit {
 
   leaders:Leader[];
   basePath:string;
+  abterrMsg:string;
 
   constructor( private leaderservice:LeadersService) { }
 
@@ -19,7 +20,7 @@ export class AboutComponent implements OnInit {
     this.basePath=baseURL;
     console.log("About us");
     this.leaderservice.getLeaders()
-    .subscribe((leaders)=>this.leaders=leaders);
+    .subscribe((leaders)=>this.leaders=leaders,abterrMsg=>this.abterrMsg=<any>abterrMsg);
   }
 
 }
