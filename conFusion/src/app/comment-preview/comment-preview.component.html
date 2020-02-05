@@ -4,4 +4,27 @@
 <button mat-button mat-dialog-close>&times;</button>
 </mat-toolbar>
 
-<p>Hello</p>
+<p>{{ commentPreview | json}}</p>
+<form novalidate #commentForm="ngForm" (ngSubmit)="onSubmit()">
+  <p>
+  <mat-dialog-content>
+    <mat-form-field class="full-width">
+      <input matInput type="text" placeholder="Author" readonly value="Gaurang" name="author" id="">
+    </mat-form-field>    
+    <mat-form-field class="full-width">
+      <input matInput type="text" placeholder="Rating"  readonly value="3" name="rating" id="">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput type="text" placeholder="Comment" readonly value="Delecious" name="rating" id="">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput type="text" placeholder="Date"   value="14-07-2019" readonly name="date" id="">
+    </mat-form-field>
+    <mat-dialog-actions>
+      <span class="flex-spacer"></span>
+      <button mat-button type="submit" style="background-color: primary;">Submit</button>
+    </mat-dialog-actions>
+  </mat-dialog-content>
+</p>
+</form>
+<app-dish-details></app-dish-details>

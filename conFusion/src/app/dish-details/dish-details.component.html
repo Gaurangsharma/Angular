@@ -1,7 +1,7 @@
 <div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
   fxLayoutAlign.gt-md="space-around center" fxLayoutGap="10px" fxLayoutGap.xs="0">
 
-  <div fxFlex="40" *ngIf="dish">
+  <div fxFlex="40" *ngIf="dish ">
     <!-- <mat-card *ngFor="let d of dish"> -->
     <mat-card>
       <mat-card-header>
@@ -66,11 +66,10 @@
         <textarea matInput formControlName="comment" placeholder="Your comment" required></textarea>
         <mat-error *ngIf="formErrors.comment">{{ formErrors.comment}}</mat-error>
       </mat-form-field>
-      <button mat-button (click)="opencommentForm()"><span class="fa fa-sign-in fa-lg"></span> Preview</button>
+      <a mat-button (click)="opencommentForm()"><span class="fa fa-sign-in fa-lg"></span> Preview</a>
       <button type="submit" mat-button class="background-primary text-floral-white"
         >Submit</button>
     </form>
   </div>
+  
 </div>
-
-<app-comment-preview [commentPreview]='commentForm'></app-comment-preview>

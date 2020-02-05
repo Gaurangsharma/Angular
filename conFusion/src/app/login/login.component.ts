@@ -19,5 +19,4 @@ export class LoginComponent implements OnInit {
     console.log("User",this.user);
     this.dialogRef.close();
   }
-
 }

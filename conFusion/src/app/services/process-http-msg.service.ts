@@ -9,16 +9,16 @@ export class ProcessHttpMsgService {
 
   constructor() { }
 
-  public handelError(error:HttpErrorResponse|any){
+  public handleError(error:HttpErrorResponse|any){
     let errMsg:string;
-    console.log(error);
+    
     if(error.error instanceof ErrorEvent){
       errMsg=error.error.message;
     }
     else{
       errMsg=`${error.status} -${error.statusText||''} ${ error.error}`;
     }
-
+    console.log(errMsg);
     return throwError(errMsg);
   }
 }
