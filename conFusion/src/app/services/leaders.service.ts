@@ -19,16 +19,16 @@ export class LeadersService {
 
   getLeaders():Observable<Leader[]>{
     return this.http.get<Leader[]>(baseURL+'leadership')
-    .pipe(catchError(this.processHttpService.handelError));
+    .pipe(catchError(this.processHttpService.handleError));
   }
 
   getLeader(id: string):Observable<Leader> {
     return this.http.get<Leader>(baseURL+'leadership/'+id)
-    .pipe(catchError(this.processHttpService.handelError));
+    .pipe(catchError(this.processHttpService.handleError));
   }
 
   getFeaturedLeader():Observable<Leader> {
     return this.http.get<Leader[]>(baseURL+'leadership?featured=true').pipe(map(leaders=>leaders[0]))
-    .pipe(catchError(this.processHttpService.handelError));
+    .pipe(catchError(this.processHttpService.handleError));
   }
 }
