@@ -5,29 +5,21 @@ import { ActivatedRoute, Params } from "@angular/router";
 import { Location } from "@angular/common";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Comment } from "../shared/comment";
-import { switchMap } from 'rxjs/operators';
+import { switchMap, expand } from 'rxjs/operators';
 import { baseURL } from "../shared/baseurl";
 import { HttpClient } from "@angular/common/http";
 import { CommentPreviewComponent } from "../comment-preview/comment-preview.component";
 import { MatDialog } from "@angular/material/dialog";
-import { trigger, transition, state, style, animate } from "@angular/animations";
+import { visibility,flyInOut,expands } from "../animation/app.animation";
 
 @Component({
   selector: 'app-dish-details',
   templateUrl: './dish-details.component.html',
   styleUrls: ['./dish-details.component.scss'],
   animations: [
-    trigger('visibility', [
-      state('showing', style({
-        transform: 'scale(1.0)',
-        opacity: 1
-      })),
-      state('hidding', style({
-        transform: 'scale(0.5)',
-        opacity: 0
-      })),
-      transition('* => *', animate('1s ease-in-out'))
-    ])
+    visibility(),
+    flyInOut(),
+    expands()
   ]
 })
 export class DishDetailsComponent implements OnInit {

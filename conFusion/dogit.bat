@@ -1,5 +1,3 @@
 git add .
-git commit -m "Animations part1"
+git commit -m "Animations part 2"
 git push origin master
-
-REM to do assignment 2 preview option before submit
