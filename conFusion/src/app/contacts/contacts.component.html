@@ -44,6 +44,14 @@
     <h3>Send us your Feedback</h3>
 
     <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>
+
+    <mat-list>
+      <div *ngFor="let c of feedbackcopy">
+        <p>{{c.id}}</p>
+        <p>{{c.firstname }}</p>
+        <p>-- {{c.lastname}} {{c.email }}</p>
+      </div>
+    </mat-list>
     <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()" [@expand]>
       <p>
         <mat-form-field class="half-width">
@@ -89,6 +97,9 @@
       </p>
       <button type="submit" mat-button class="background-primary text-floral-white">Submit</button>
     </form>
+    <mat-spinner [hidden]="loader" class='center-align'>
+      <h4>Loading . . . Please Wait</h4>
+    </mat-spinner>
   </div>
 
 
