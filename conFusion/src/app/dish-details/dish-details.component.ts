@@ -10,7 +10,7 @@ import { baseURL } from "../shared/baseurl";
 import { HttpClient } from "@angular/common/http";
 import { CommentPreviewComponent } from "../comment-preview/comment-preview.component";
 import { MatDialog } from "@angular/material/dialog";
-import { visibility,flyInOut,expands } from "../animation/app.animation";
+import { visibility, flyInOut, expands } from "../animation/app.animation";
 
 @Component({
   selector: 'app-dish-details',
@@ -97,11 +97,11 @@ export class DishDetailsComponent implements OnInit {
     let isoDate = datee.toISOString();
     this.comment.date = isoDate;
     this.dish.comments.push(this.comment);
-    this.dishservice.putDish(this.dishcopy)
+    console.log(this.dishservice.putDish(this.dishcopy)
       .subscribe(dish => {
         this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id);
       },
-        dishdetailerrMsg => this.dishdetailerrMsg = <any>dishdetailerrMsg);
+        dishdetailerrMsg => this.dishdetailerrMsg = <any>dishdetailerrMsg));
     this.commentForm.reset({
       author: '',
       rating: 5,

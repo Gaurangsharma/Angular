@@ -1,8 +1,10 @@
-import { Component, OnInit ,ViewChild } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 
 import { FormBuilder,FormGroup,Validator, Validators  } from "@angular/forms";
 import { Feedback,ContactType } from "../shared/feedback";
-import { visibility,flyInOut } from "../animation/app.animation";
+import { visibility,flyInOut,expands } from "../animation/app.animation";
+import { FeedbackService } from "../services/feedback.service";
+import { expand } from 'rxjs/operators';
 
 @Component({
   selector: 'app-contacts',
@@ -13,7 +15,8 @@ import { visibility,flyInOut } from "../animation/app.animation";
     'style':'display:block;'
   },
   animations:[
-    flyInOut()
+    flyInOut(),
+    expands()
   ]
 })
 export class ContactsComponent implements OnInit {
@@ -21,10 +24,11 @@ export class ContactsComponent implements OnInit {
   feedbackForm: FormGroup;
   feedback: Feedback;
   contactType = ContactType;
+  feedbackcopy:Feedback;
 
-  @ViewChild('fform') feedbackFormDirective;
   
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+    private feedbackservice:FeedbackService) {
     this.createForm();
   }
 
@@ -64,7 +68,7 @@ export class ContactsComponent implements OnInit {
       firstname: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(25)]],
       lastname: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(25)]],
       telnum: [0,[Validators.required,Validators.pattern]],
-      email: ['',Validators.required,Validators.email],
+      email: ['',Validators.required],
       agree: false,
       contacttype: 'None',
       message: '',
@@ -75,8 +79,10 @@ export class ContactsComponent implements OnInit {
 
   onSubmit() {
     this.feedback = this.feedbackForm.value;
-    console.log(this.feedback);
-
+    console.log(this.feedback+" Inside Onsubmit");
+    this.feedbackservice.putFeedback(this.feedback)
+    .subscribe(feedback=>this.feedback=feedback);
+    console.log("Resetting");
     this.feedbackForm.reset({
       firstname: '' ,
       lastname: '',
@@ -87,7 +93,6 @@ export class ContactsComponent implements OnInit {
       message: '',
 
     });
-    this.feedbackFormDirective.resetForm();
   }
 
   onValueChanged(data?: any) {
