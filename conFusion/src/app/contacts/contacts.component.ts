@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild,Inject} from '@angular/core';
 
 import { FormBuilder, FormGroup, Validator, Validators } from "@angular/forms";
 import { Feedback, ContactType } from "../shared/feedback";
 import { visibility, flyInOut, expands } from "../animation/app.animation";
 import { FeedbackService } from "../services/feedback.service";
-import { expand } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-contacts',
@@ -24,8 +24,11 @@ export class ContactsComponent implements OnInit {
   feedbackForm: FormGroup;
   feedback: Feedback;
   contactType = ContactType;
-  feedbackcopy: Feedback[]=[];
-  showLoader: boolean = false;
+  returnedfeedback: Feedback[] = [];
+  isSpinnerHidden: boolean = true;
+  isFormHidden: boolean = false;
+  isSubmitted: boolean = false;
+
 
 
   constructor(private fb: FormBuilder,
@@ -79,25 +82,32 @@ export class ContactsComponent implements OnInit {
   }
 
   onSubmit() {
-    this.showLoader = true;
     this.feedback = this.feedbackForm.value;
-    console.log(this.feedback + " Inside Onsubmit");
+    this.returnedfeedback = [];
+    this.isFormHidden=true;
+    this.isSubmitted=true;
+    this.isSpinnerHidden=false;
     this.feedbackservice.putFeedback(this.feedback)
       .subscribe(feedback => {
-        console.log('------------------->>> ', feedback)
+        console.log('-return feedback', feedback)
         this.feedbackSubmitSuccess(feedback);
-        this.feedbackcopy.push(feedback);
       });
     
-    
+
   }
 
   feedbackSubmitSuccess(feedback) {
-    this.showLoader = false;
-    this.resetForm();
+    this.returnedfeedback.push(feedback);
+    setTimeout(()=>{
+      this.returnedfeedback=null;
+      this.isFormHidden=false;
+      this.isSubmitted=false;
+    },5000);
+    this.resetingForm();
+
   }
 
-  resetForm() {
+  resetingForm() {
     this.feedbackForm.reset({
       firstname: '',
       lastname: '',
@@ -106,9 +116,8 @@ export class ContactsComponent implements OnInit {
       agree: false,
       contacttype: 'None',
       message: '',
-
     });
-  } 
+  }
 
   onValueChanged(data?: any) {
     if (!this.feedbackForm) { return; }

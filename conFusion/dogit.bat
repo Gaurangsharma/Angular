@@ -1,3 +1,3 @@
 git add .
-git commit -m "Assignment upto task4 half"
+git commit -m "Assignment completed"
 git push origin master
