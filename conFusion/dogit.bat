@@ -1,3 +1,3 @@
 git add .
-git commit -m "Assignment completed"
+git commit -m "svgtowordfile"
 git push origin master
