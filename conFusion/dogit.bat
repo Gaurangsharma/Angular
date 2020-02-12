@@ -1,3 +1,3 @@
 git add .
-git commit -m "base64 svg to word"
+git commit -m "task completed"
 git push origin master
