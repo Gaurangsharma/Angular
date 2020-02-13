@@ -1,3 +1,3 @@
 git add .
-git commit -m "task completed"
+git commit -m "Component Test"
 git push origin master
