@@ -7,8 +7,8 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo('/');
-    expect(page.getParagraphText('app-root h1')).toEqual('Welcome Gaurang to conFusion!');
+  it('should display welcome message ', () => {
+    page.navigateTo();
+    expect(page.getParagraphText()).toEqual('Welcome to conFusion!');
   });
 });
