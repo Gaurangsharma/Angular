@@ -41,6 +41,8 @@ import { LeadersService } from "./services/leaders.service";
 import { baseURL } from './shared/baseurl';
 import { ProcessHttpMsgService } from "./services/process-http-msg.service";
 import { HighLightDirective } from './directives/high-light.directive';
+import { ParentComponent } from './parent/parent.component';
+import { ChildComponent } from './child/child.component';
 
 
 @NgModule({
@@ -55,7 +57,9 @@ import { HighLightDirective } from './directives/high-light.directive';
     ContactsComponent,
     LoginComponent,
     CommentPreviewComponent,
-    HighLightDirective
+    HighLightDirective,
+    ParentComponent,
+    ChildComponent
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,6 @@ import { LeadersService } from "../services/leaders.service";
 import { Leader } from "../shared/leader";
 import { baseURL } from "../shared/baseurl";
 import { visibility,flyInOut } from "../animation/app.animation";
-
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -21,7 +20,6 @@ export class AboutComponent implements OnInit {
   leaders:Leader[];
   basePath:string;
   abterrMsg:string;
-
   constructor( private leaderservice:LeadersService) { }
 
   ngOnInit() {
@@ -32,3 +30,4 @@ export class AboutComponent implements OnInit {
   }
 
 }
+

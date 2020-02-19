@@ -30,7 +30,6 @@ export class ContactsComponent implements OnInit {
   isSubmitted: boolean = false;
 
 
-
   constructor(private fb: FormBuilder,
     private feedbackservice: FeedbackService) {
     this.createForm();
