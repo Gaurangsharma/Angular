@@ -1,3 +1,3 @@
 git add .
-git commit -m "Assignment upto task4 half"
+git commit -m "All methords for Sharing Data between Angular Components"
 git push origin master
